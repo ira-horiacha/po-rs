@@ -1,0 +1,28 @@
+version: '3'
+services:
+  books:
+    build: ./books
+    ports:
+      - "8001:8001"
+    depends_on:
+      - redis
+
+  readers:
+    build: ./readers
+    ports:
+      - "8002:8002"
+    depends_on:
+      - redis
+
+  orders:
+    build: ./orders
+    ports:
+      - "8003:8003"
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:latest"
+    container_name: redis
+    ports:
+      - "6379:6379"
